@@ -22,7 +22,7 @@ const Welcome = ({ navigation }) => {
             style={{
               marginBottom: 20,
               color: "#fff",
-              fontFamily: "CourierPrime_400Regular",
+              fontFamily: "FiraSans_400Regular_Italic",
             }}
           >
             OR
@@ -42,12 +42,12 @@ const Welcome = ({ navigation }) => {
 const styles = StyleSheet.create({
   heading: {
     fontSize: 50,
-    fontFamily: "CourierPrime_400Regular",
+    fontFamily: "FiraSans_500Medium",
     color: "#fff",
   },
   caption: {
     fontSize: 30,
-    fontFamily: "CourierPrime_400Regular_Italic",
+    fontFamily: "FiraSans_400Regular_Italic",
     color: "#fff",
     marginTop: 20,
   },

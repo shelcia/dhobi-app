@@ -1,11 +1,18 @@
 import React from "react";
+
 import {
   useFonts,
-  CourierPrime_400Regular,
-  CourierPrime_400Regular_Italic,
-  CourierPrime_700Bold,
-  CourierPrime_700Bold_Italic,
-} from "@expo-google-fonts/courier-prime";
+  FiraSans_100Thin,
+  FiraSans_100Thin_Italic,
+  FiraSans_200ExtraLight,
+  FiraSans_200ExtraLight_Italic,
+  FiraSans_300Light,
+  FiraSans_300Light_Italic,
+  FiraSans_400Regular,
+  FiraSans_400Regular_Italic,
+  FiraSans_500Medium,
+  FiraSans_500Medium_Italic,
+} from "@expo-google-fonts/fira-sans";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Welcome from "./components/Auth/Welcome";
@@ -17,10 +24,16 @@ import Loading from "./components/Partials/Loading";
 export default function App() {
   const Stack = createStackNavigator();
   const [fontsLoaded] = useFonts({
-    CourierPrime_400Regular,
-    CourierPrime_400Regular_Italic,
-    CourierPrime_700Bold,
-    CourierPrime_700Bold_Italic,
+    FiraSans_100Thin,
+    FiraSans_100Thin_Italic,
+    FiraSans_200ExtraLight,
+    FiraSans_200ExtraLight_Italic,
+    FiraSans_300Light,
+    FiraSans_300Light_Italic,
+    FiraSans_400Regular,
+    FiraSans_400Regular_Italic,
+    FiraSans_500Medium,
+    FiraSans_500Medium_Italic,
   });
 
   if (!fontsLoaded) {
@@ -43,7 +56,7 @@ export default function App() {
               elevation: 4,
             },
             headerTitleStyle: {
-              fontFamily: "CourierPrime_400Regular",
+              fontFamily: "FiraSans_100Thin",
             },
           }}
         >

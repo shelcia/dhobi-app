@@ -25,12 +25,12 @@ export const globalStyles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     alignSelf: "center",
-    fontFamily: "CourierPrime_400Regular",
+    fontFamily: "FiraSans_400Regular",
     fontSize: 20,
   },
   title: {
     alignSelf: "center",
-    fontFamily: "CourierPrime_700Bold",
+    fontFamily: "FiraSans_500Medium",
     fontSize: 30,
     marginTop: 60,
     marginBottom: 50,
@@ -38,7 +38,7 @@ export const globalStyles = StyleSheet.create({
   headTitle: {
     marginRight: "auto",
     paddingLeft: 35,
-    fontFamily: "CourierPrime_700Bold",
+    fontFamily: "FiraSans_500Medium",
     fontSize: 30,
     marginTop: 30,
     marginBottom: 30,
@@ -49,18 +49,18 @@ export const globalStyles = StyleSheet.create({
     borderColor: "#398E3D",
     paddingVertical: 10,
     width: 350,
-    fontFamily: "CourierPrime_700Bold",
+    fontFamily: "FiraSans_500Medium",
   },
   search: {
     borderBottomWidth: 1.5,
     borderColor: "#398E3D",
     paddingVertical: 10,
     width: 350,
-    fontFamily: "CourierPrime_700Bold",
+    fontFamily: "FiraSans_500Medium",
   },
   label: {
     color: "#398E3D",
-    fontFamily: "CourierPrime_700Bold",
+    fontFamily: "FiraSans_500Medium",
     fontSize: 17,
     textAlign: "left",
   },
@@ -72,7 +72,7 @@ export const globalStyles = StyleSheet.create({
   authLink: {
     color: "#398E3D",
     fontStyle: "italic",
-    fontFamily: "CourierPrime_400Regular_Italic",
+    fontFamily: "FiraSans_500Medium_Italic",
     textDecorationLine: "underline",
   },
   footer: {
@@ -103,11 +103,11 @@ export const globalStyles = StyleSheet.create({
     alignItems: "center",
   },
   footertext: {
-    fontFamily: "CourierPrime_400Regular",
+    fontFamily: "FiraSans_400Regular",
     marginTop: 5,
   },
   footertextactive: {
-    fontFamily: "CourierPrime_400Regular",
+    fontFamily: "FiraSans_500Medium",
     marginTop: 5,
     color: "#398E3D",
   },
@@ -152,13 +152,13 @@ export const globalStyles = StyleSheet.create({
     color: "#398E3D",
     width: 120,
     marginVertical: 4,
-    fontFamily: "CourierPrime_400Regular",
+    fontFamily: "FiraSans_500Medium",
   },
   listcol2: {
     fontSize: 12,
     width: 140,
     marginVertical: 4,
-    fontFamily: "CourierPrime_400Regular",
+    fontFamily: "FiraSans_400Regular",
   },
   container: {
     flex: 1,
@@ -184,28 +184,28 @@ export const globalStyles = StyleSheet.create({
     justifyContent: "space-around",
     padding: 3,
     paddingVertical: 15,
-    fontFamily: "CourierPrime_700Bold",
+    fontFamily: "FiraSans_500Medium",
   },
   entryText: {
     color: "black",
     fontSize: 15,
-    fontFamily: "CourierPrime_700Bold",
+    fontFamily: "FiraSans_500Medium",
     flexShrink: 1,
     flexWrap: "wrap",
   },
   labelText: {
     color: "#398E3D",
     fontSize: 15,
-    fontFamily: "CourierPrime_700Bold",
+    fontFamily: "FiraSans_500Medium",
   },
   warning: {
     color: "red",
     fontSize: 14,
-    fontFamily: "CourierPrime_400Regular",
+    fontFamily: "FiraSans_400Regular",
   },
   success: {
     color: "#398E3D",
     fontSize: 14,
-    fontFamily: "CourierPrime_400Regular",
+    fontFamily: "FiraSans_400Regular",
   },
 });
