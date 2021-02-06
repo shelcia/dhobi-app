@@ -1,40 +1,24 @@
 import React from "react";
-import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import AppButton from "../styles/Button";
 
 const Welcome = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require("../../assets/splash.png")}
-        style={styles.image}
-      >
-        <Text style={styles.heading}>Welcome</Text>
-        <Text style={styles.caption}>Lorem ipsum dolor.</Text>
-        <View style={styles.buttonContainer}>
-          <AppButton
-            title="Login"
-            size="sm"
-            backgroundColor="#398E3D"
-            onPress={() => navigation.navigate("Login")}
-          />
-          <Text
-            style={{
-              marginBottom: 20,
-              color: "#fff",
-              fontFamily: "FiraSans_400Regular_Italic",
-            }}
-          >
-            OR
-          </Text>
-          <AppButton
-            title="Signup"
-            size="sm"
-            backgroundColor="#398E3D"
-            onPress={() => navigation.navigate("Signup")}
-          />
-        </View>
-      </ImageBackground>
+      <Image source={require("../../assets/images/logo-outline.png")} />
+      <Text style={styles.heading}>Mr Ironing</Text>
+      <Text style={styles.caption}>
+        Get ready to experience an app to make your life easier by taking care
+        of all your ironing needs.
+      </Text>
+      <View style={styles.buttonContainer}>
+        <AppButton
+          title="Get Started"
+          size="sm"
+          backgroundColor="#398E3D"
+          onPress={() => navigation.navigate("Login")}
+        />
+      </View>
     </View>
   );
 };
@@ -42,29 +26,26 @@ const Welcome = ({ navigation }) => {
 const styles = StyleSheet.create({
   heading: {
     fontSize: 50,
-    fontFamily: "FiraSans_500Medium",
+    fontFamily: "JosefinSans_600SemiBold",
     color: "#fff",
+    marginTop: 30,
   },
   caption: {
-    fontSize: 30,
-    fontFamily: "FiraSans_400Regular_Italic",
+    fontSize: 20,
+    fontFamily: "JosefinSans_400Regular",
     color: "#fff",
-    marginTop: 20,
+    marginVertical: 20,
+    paddingHorizontal: 40,
+    textAlign: "center",
   },
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-  },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    resizeMode: "stretch",
-    width: 450,
+    backgroundColor: "#65ABEA",
   },
   buttonContainer: {
-    marginTop: 300,
+    marginTop: 80,
     alignItems: "center",
   },
 });
