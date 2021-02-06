@@ -16,7 +16,7 @@ const Welcome = ({ navigation }) => {
           title="Get Started"
           size="sm"
           backgroundColor="#398E3D"
-          onPress={() => navigation.navigate("Login")}
+          onPress={() => navigation.navigate("HomePage")}
         />
       </View>
     </View>

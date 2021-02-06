@@ -36,6 +36,7 @@ import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import OTPVerification from "./components/Auth/OTPVerification";
 import Loading from "./components/Partials/Loading";
+import HomePage from "./components/Dashboard/HomePage";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -86,7 +87,7 @@ export default function App() {
               elevation: 4,
             },
             headerTitleStyle: {
-              fontFamily: "FiraSans_100Thin",
+              fontFamily: "JosefinSans_300Light",
             },
           }}
         >
@@ -94,6 +95,13 @@ export default function App() {
             name="Welcome"
             component={Welcome}
             options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="HomePage"
+            component={HomePage}
+            options={{ title: "Vanakkam!!", headerBackAccessibilityLabel: "" }}
+
+            // options={{ headerShown: false }}
           />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Signup" component={Signup} />
