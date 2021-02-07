@@ -1,14 +1,8 @@
 import React, { useState } from "react";
-import {
-  Text,
-  View,
-  FlatList,
-  Image,
-  Dimensions,
-  StyleSheet,
-} from "react-native";
+import { View, FlatList } from "react-native";
 import AppButton from "../styles/Button";
 import { globalStyles } from "../styles/GlobalStyles";
+import Cards from "./Cards";
 
 const AddOrder = () => {
   const [items] = useState([
@@ -30,18 +24,12 @@ const AddOrder = () => {
   return (
     <React.Fragment>
       <View style={globalStyles.container}>
-        <Text style={globalStyles.title}>New Order</Text>
+        {/* <Text style={globalStyles.title}>New Order</Text> */}
         <FlatList
           data={items}
+          style={{ paddingHorizontal: 10, paddingTop: 10 }}
           keyExtractor={(item) => item._id}
-          renderItem={({ item }) => (
-            <View style={styles.card}>
-              <Image source={{ uri: item.img }} />
-              {/* <ImageBackground source={item.img} /> */}
-              <Text style={globalStyles.entryText}>{item.name}</Text>
-              <Text style={globalStyles.entryText}>{item.cost}</Text>
-            </View>
-          )}
+          renderItem={({ item }) => <Cards item={item} />}
         />
         <View style={globalStyles.buttonContainer}>
           <AppButton title="Schedule Pickup" />
@@ -50,26 +38,5 @@ const AddOrder = () => {
     </React.Fragment>
   );
 };
-
-const styles = StyleSheet.create({
-  card: {
-    width: Dimensions.get("window").width - 30,
-    // borderColor: "red",
-    // borderWidth: 2,
-    paddingHorizontal: 20,
-    paddingVertical: 20,
-    backgroundColor: "#fff",
-    marginBottom: 10,
-    borderRadius: 10,
-    elevation: 4,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.15,
-    shadowRadius: 2.62,
-  },
-});
 
 export default AddOrder;
