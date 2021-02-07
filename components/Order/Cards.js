@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import { globalStyles } from "../styles/GlobalStyles";
 import { Text, View, Image } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { API_URL } from "../../api";
 
 const Cards = ({ item }) => {
   const [number, setNumber] = useState(0);
-  console.log(number);
   return (
     <React.Fragment>
       <View style={globalStyles.card}>
-        <Image source={{ uri: item.img }} style={{ width: 40, height: 40 }} />
+        <Image
+          source={{ uri: `${API_URL}common/category/${item._id}` }}
+          style={{ width: 40, height: 40 }}
+        />
         <View style={globalStyles.nameCol}>
-          <Text style={globalStyles.entryText}>{item.name}</Text>
-          <Text style={globalStyles.entryText}> Rs {item.cost} per shirt</Text>
+          <Text style={globalStyles.text}>{item.name}</Text>
+          <Text style={globalStyles.listText}> Rs {item.cost} per shirt</Text>
         </View>
         <View style={globalStyles.countCol}>
           <AntDesign
@@ -21,7 +24,7 @@ const Cards = ({ item }) => {
             color="#3B90DA"
             onPress={() => setNumber(number - 1)}
           />
-          <Text>{number}</Text>
+          <Text style={globalStyles.text}>{number}</Text>
           <AntDesign
             name="pluscircle"
             size={24}
