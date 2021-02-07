@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import {
   MaterialIcons,
   FontAwesome5,
@@ -13,39 +13,39 @@ const FooterDashboard = ({ navigation }) => {
     <React.Fragment>
       <View style={globalStyles.footer}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("HelpDesk")}
+          onPress={() => navigation.navigate("HomePage")}
           style={globalStyles.footersection}
         >
           <View style={globalStyles.footerlinks}>
-            <AntDesign name="home" size={26} color="black" />
-            <Text style={globalStyles.footertext}>Home</Text>
+            <AntDesign name="home" size={25} color="#65ABEA" />
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate("Dashboard")}
+          onPress={() => navigation.navigate("HomePage")}
           style={globalStyles.footersection}
         >
           <View style={globalStyles.footerlinks}>
-            <FontAwesome5 name="list-alt" size={25} color="black" />
-            <Text style={globalStyles.footertextactive}>Order</Text>
+            <FontAwesome5 name="list-alt" size={25} color="#A5A5A5" />
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate("Profile")}
+          onPress={() => navigation.navigate("HomePage")}
           style={globalStyles.footersection}
         >
           <View style={globalStyles.footerlinks}>
-            <MaterialIcons name="notifications-none" size={24} color="black" />
-            <Text style={globalStyles.footertext}>Notifications</Text>
+            <MaterialIcons
+              name="notifications-none"
+              size={24}
+              color="#A5A5A5"
+            />
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate("Profile")}
+          onPress={() => navigation.navigate("HomePage")}
           style={globalStyles.footersection}
         >
           <View style={globalStyles.footerlinks}>
-            <Feather name="user" size={24} color="black" />{" "}
-            <Text style={globalStyles.footertext}>Notifications</Text>
+            <Feather name="user" size={24} color="#A5A5A5" />
           </View>
         </TouchableOpacity>
       </View>

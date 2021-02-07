@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 export const globalStyles = StyleSheet.create({
   container: {
@@ -7,7 +7,6 @@ export const globalStyles = StyleSheet.create({
     alignItems: "center",
   },
   button: {
-    // width: 300,
     paddingHorizontal: 60,
     paddingVertical: 20,
     backgroundColor: "#3B90DA",
@@ -26,7 +25,6 @@ export const globalStyles = StyleSheet.create({
     color: "#fff",
     alignSelf: "center",
     fontFamily: "JosefinSans_500Medium",
-    // textTransform: "uppercase",
     fontSize: 20,
   },
   title: {
@@ -46,6 +44,47 @@ export const globalStyles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 30,
   },
+  buttonContainer: {
+    marginVertical: 20,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  footer: {
+    width: Dimensions.get("window").width,
+    backgroundColor: "#fff",
+    elevation: 4,
+    padding: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    paddingHorizontal: 50,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: -3,
+    },
+    shadowOpacity: 0.08,
+    shadowRadius: 2.62,
+  },
+  footersection: {
+    width: 100,
+    marginBottom: 10,
+  },
+  footerlinks: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  // footertext: {
+  //   fontFamily: "JosefinSans_400Regular",
+  //   marginTop: 5,
+  // },
+  // footertextactive: {
+  //   fontFamily: "JosefinSans_500Medium",
+  //   marginTop: 5,
+  //   color: "#398E3D",
+  // },
   input: {
     marginVertical: 30,
     borderBottomWidth: 1.5,
@@ -67,52 +106,14 @@ export const globalStyles = StyleSheet.create({
     fontSize: 17,
     textAlign: "left",
   },
-  buttonContainer: {
-    marginTop: 20,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+
   authLink: {
     color: "#398E3D",
     fontStyle: "italic",
     fontFamily: "FiraSans_500Medium_Italic",
     textDecorationLine: "underline",
   },
-  footer: {
-    width: 420,
-    backgroundColor: "#fff",
-    elevation: 4,
-    padding: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
-    paddingHorizontal: 50,
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: -3,
-    },
-    shadowOpacity: 0.08,
-    shadowRadius: 2.62,
-  },
-  footersection: {
-    width: 130,
-  },
-  footerlinks: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  footertext: {
-    fontFamily: "JosefinSans_400Regular",
-    marginTop: 5,
-  },
-  footertextactive: {
-    fontFamily: "JosefinSans_500Medium",
-    marginTop: 5,
-    color: "#398E3D",
-  },
+
   listGroup: {
     width: 350,
     flexDirection: "row",
