@@ -37,6 +37,7 @@ import Signup from "./components/Auth/Signup";
 import OTPVerification from "./components/Auth/OTPVerification";
 import Loading from "./components/Partials/Loading";
 import HomePage from "./components/Dashboard/HomePage";
+import AddOrder from "./components/Order/AddOrder";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -101,8 +102,11 @@ export default function App() {
             name="HomePage"
             component={HomePage}
             options={{ title: "Vanakkam!!", headerBackAccessibilityLabel: "" }}
-
-            // options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="AddOrder"
+            component={AddOrder}
+            options={{ title: "Place Order!!" }}
           />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Signup" component={Signup} />
