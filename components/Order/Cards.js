@@ -12,7 +12,7 @@ const Cards = ({ item }) => {
         <Image source={{ uri: item.img }} style={{ width: 40, height: 40 }} />
         <View style={globalStyles.nameCol}>
           <Text style={globalStyles.entryText}>{item.name}</Text>
-          <Text style={globalStyles.entryText}>{item.cost}</Text>
+          <Text style={globalStyles.entryText}> Rs {item.cost} per shirt</Text>
         </View>
         <View style={globalStyles.countCol}>
           <AntDesign

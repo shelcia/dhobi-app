@@ -105,8 +105,8 @@ export const globalStyles = StyleSheet.create({
   countCol: {
     width: 110,
     flexDirection: "row",
-    borderColor: "green",
-    borderWidth: 2,
+    // borderColor: "green",
+    // borderWidth: 2,
     justifyContent: "space-between",
     alignItems: "center",
   },
