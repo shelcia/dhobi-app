@@ -45,3 +45,12 @@ const Item = () => {
 };
 
 export default HomePage;
+
+// import { AntDesign } from '@expo/vector-icons';
+// <AntDesign name="home" size={24} color="black" />
+// import { FontAwesome5 } from '@expo/vector-icons';
+// <FontAwesome5 name="list-alt" size={24} color="black" />
+// import { MaterialIcons } from '@expo/vector-icons';
+// <MaterialIcons name="notifications-none" size={24} color="black" />
+// import { Feather } from '@expo/vector-icons';
+// <Feather name="user" size={24} color="black" />

@@ -88,6 +88,7 @@ export default function App() {
             },
             headerTitleStyle: {
               fontFamily: "JosefinSans_300Light",
+              color: "#65ABEA",
             },
           }}
         >
