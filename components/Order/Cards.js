@@ -15,13 +15,17 @@ const Cards = ({ item }) => {
         />
         <View style={globalStyles.nameCol}>
           <Text style={globalStyles.text}>{item.name}</Text>
-          <Text style={globalStyles.listText}> Rs {item.cost} per shirt</Text>
+          <Text style={globalStyles.listText}>
+            {" "}
+            Rs {item.cost} per {item.name}
+          </Text>
         </View>
         <View style={globalStyles.countCol}>
           <AntDesign
             name="minuscircle"
             size={24}
             color="#3B90DA"
+            style={globalStyles.iconStyle}
             onPress={() => setNumber(number - 1)}
           />
           <Text style={globalStyles.text}>{number}</Text>
@@ -29,6 +33,7 @@ const Cards = ({ item }) => {
             name="pluscircle"
             size={24}
             color="#3B90DA"
+            style={globalStyles.iconStyle}
             onPress={() => setNumber(number + 1)}
           />
         </View>

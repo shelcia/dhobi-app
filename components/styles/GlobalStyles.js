@@ -94,8 +94,6 @@ export const globalStyles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 10,
     elevation: 4,
-    // borderColor: "blue",
-    // borderWidth: 2,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -108,12 +106,12 @@ export const globalStyles = StyleSheet.create({
     justifyContent: "space-between",
   },
   nameCol: {
-    width: 130,
+    width: 165,
     // borderColor: "blue",
     // borderWidth: 2,
   },
   countCol: {
-    width: 90,
+    width: 85,
     flexDirection: "row",
     // borderColor: "green",
     // borderWidth: 2,
@@ -134,6 +132,16 @@ export const globalStyles = StyleSheet.create({
     flexShrink: 1,
     flexWrap: "wrap",
     marginTop: 8,
+  },
+  iconStyle: {
+    elevation: 4,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
   },
   // footertext: {
   //   fontFamily: "JosefinSans_400Regular",

@@ -16,6 +16,7 @@ const HomePage = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    const ac = new AbortController();
     const fetchAll = async () => {
       setIsLoading(true);
       try {
@@ -43,7 +44,10 @@ const HomePage = ({ navigation }) => {
       }
       setIsLoading(false);
     };
-    fetchAll();
+    if (services.length === 0) {
+      fetchAll();
+    }
+    return () => ac.abort();
   }, []);
 
   return isLoading ? (
@@ -67,7 +71,7 @@ const HomePage = ({ navigation }) => {
               <Image
                 source={{ uri: `${API_URL}common/banners/${item._id}` }}
                 style={{
-                  width: Dimensions.get("window").width - 40,
+                  width: Dimensions.get("window").width - 30,
                   height: 175,
                 }}
               />
@@ -103,6 +107,7 @@ const HomePage = ({ navigation }) => {
                   padding: 10,
                   borderRadius: 10,
                   // flexDirection: "row",
+                  alignItems: "center",
                   justifyContent: "space-between",
                 }}
               >
