@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { globalStyles } from "../styles/GlobalStyles";
 import { Text, View, Image } from "react-native";

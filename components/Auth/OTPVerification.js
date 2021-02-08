@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React, { useState, useRef, useEffect } from "react";
 import {
   Text,
@@ -13,17 +15,15 @@ import {
 import { globalStyles } from "../styles/GlobalStyles";
 import AppButton from "../styles/Button";
 import * as firebase from "firebase";
-import {
-  FirebaseRecaptchaVerifierModal,
-  FirebaseRecaptchaBanner,
-} from "expo-firebase-recaptcha";
+import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 import { FIREBASE_CONFIG } from "./Firebase";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { API_URL } from "../../api";
+import axios from "axios";
 
 const OTPVerification = ({ navigation }) => {
   const recaptchaVerifier = useRef(null);
   const verificationCodeTextInput = useRef(null);
-  // const [phoneNumber, setPhoneNumber] = useState("");
   const [verificationId, setVerificationId] = useState("");
   const [verifyError, setVerifyError] = useState();
   const [verifyInProgress, setVerifyInProgress] = useState(false);
@@ -31,16 +31,21 @@ const OTPVerification = ({ navigation }) => {
   const [confirmError, setConfirmError] = useState();
   const [confirmInProgress, setConfirmInProgress] = useState(false);
 
+  const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     const getData = async () => {
       try {
+        const name = await AsyncStorage.getItem("@iron_name");
         const number = await AsyncStorage.getItem("@iron_number");
         const password = await AsyncStorage.getItem("@iron_password");
         if (number !== null || password !== null) {
           // value previously stored
+          setName(name);
           setNumber(number);
+          setPassword(password);
         }
       } catch (e) {
         // error reading value
@@ -48,6 +53,44 @@ const OTPVerification = ({ navigation }) => {
     };
     getData();
   }, []);
+
+  const signup = () => {
+    // setIsLoading(true);
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    const response = {
+      name: name,
+      phone: number,
+      password: password,
+    };
+
+    const body = JSON.stringify(response);
+    const url = `${API_URL}auth/register`;
+
+    axios
+      .post(url, body, {
+        headers: headers,
+      })
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.status === "200") {
+          AsyncStorage.setItem("@phone", number);
+          AsyncStorage.setItem("@name", response.data.message.name);
+          AsyncStorage.setItem("@token", response.data.message.token);
+          // setIsLoading(false);
+          // SetError("");
+          navigation.navigate("AddAddress");
+        } else if (response.data.status === "400") {
+          // setIsLoading(false);
+          // SetError(response.data.message);
+        }
+      })
+      .catch((error) => {
+        console.log("Error", `${API_URL}auth/register`, body, error);
+      });
+  };
 
   useEffect(() => {
     const initalise = () => {
@@ -99,7 +142,7 @@ const OTPVerification = ({ navigation }) => {
       setVerificationId("");
       setVerificationCode("");
       verificationCodeTextInput.current?.clear();
-      navigation.navigate("Dashboard");
+      signup();
     } catch (err) {
       setConfirmError(err);
       setConfirmInProgress(false);

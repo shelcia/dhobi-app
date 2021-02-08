@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import { View, FlatList, Text, StyleSheet } from "react-native";
 import { API_URL } from "../../api";
@@ -6,7 +7,7 @@ import { globalStyles } from "../styles/GlobalStyles";
 import Cards from "./Cards";
 import axios from "axios";
 import Loading from "../Partials/Loading";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useContext } from "react";
 import { OrderContext } from "../Context/OrderContext";
 import { AmountContext } from "../Context/AmountContext";

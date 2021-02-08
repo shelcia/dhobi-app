@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { useState, useEffect } from "react";
 import {
@@ -12,6 +13,7 @@ import AppButton from "../styles/Button";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Signup = ({ navigation }) => {
+  const [name, setName] = useState("");
   const [uname, setUname] = useState("");
   const [password, setPassword] = useState("");
   const [rpassword, setRPassword] = useState("");
@@ -19,6 +21,7 @@ const Signup = ({ navigation }) => {
 
   const storeData = async () => {
     try {
+      await AsyncStorage.setItem("@iron_name", name);
       await AsyncStorage.setItem("@iron_number", uname);
       await AsyncStorage.setItem("@iron_password", password);
     } catch (e) {
@@ -49,6 +52,13 @@ const Signup = ({ navigation }) => {
           Signup
         </Text>
         <View>
+          <Text style={globalStyles.label}>Name</Text>
+          <TextInput
+            style={globalStyles.input}
+            keyboardType="default"
+            placeholder="Enter your name"
+            onChangeText={(val) => setName(val)}
+          />
           <Text style={globalStyles.label}>Mobile Number</Text>
           <TextInput
             style={globalStyles.input}
@@ -75,7 +85,9 @@ const Signup = ({ navigation }) => {
           />
 
           {!check && (
-            <Text style={globalStyles.warning}>Passwords don't match</Text>
+            <Text style={globalStyles.warning}>
+              Passwords don`&#39;`t match
+            </Text>
           )}
         </View>
         <View style={{ marginTop: 30 }}>

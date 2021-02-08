@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import FooterDashboard from "../Dashboard/FooterDashbaord";

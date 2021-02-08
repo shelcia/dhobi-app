@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import { Text, View, Dimensions, FlatList, Image } from "react-native";
 import { API_URL } from "../../api";
