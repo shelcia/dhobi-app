@@ -38,6 +38,7 @@ import OTPVerification from "./components/Auth/OTPVerification";
 import Loading from "./components/Partials/Loading";
 import HomePage from "./components/Dashboard/HomePage";
 import AddOrder from "./components/Order/AddOrder";
+import Areas from "./components/Dashboard/Areas";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -102,6 +103,11 @@ export default function App() {
             name="HomePage"
             component={HomePage}
             options={{ title: "Vanakkam!!", headerBackAccessibilityLabel: "" }}
+          />
+          <Stack.Screen
+            name="Areas"
+            component={Areas}
+            options={{ title: "Areas Available" }}
           />
           <Stack.Screen
             name="AddOrder"

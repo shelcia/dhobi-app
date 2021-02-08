@@ -143,6 +143,23 @@ export const globalStyles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 10,
   },
+  tinyCards: {
+    elevation: 4,
+    backgroundColor: "#fff",
+    shadowColor: "#000",
+    width: 100,
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    flex: 1,
+    padding: 10,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
   // footertext: {
   //   fontFamily: "JosefinSans_400Regular",
   //   marginTop: 5,

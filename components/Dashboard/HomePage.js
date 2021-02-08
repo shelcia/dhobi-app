@@ -35,6 +35,7 @@ const HomePage = ({ navigation }) => {
           thirdResponse.data.status === "200"
         ) {
           setArea(firstResponse.data.message[0].areas);
+          // console.log(firstResponse.data.message[0].areas.split(", "));
           setServices(secondResponse.data.message);
           setBanners(thirdResponse.data.message);
         }
@@ -77,39 +78,22 @@ const HomePage = ({ navigation }) => {
             </View>
           )}
         />
-        <Text style={globalStyles.title}>Services Provided</Text>
+        <Text style={{ ...globalStyles.title, marginTop: 0 }}>
+          Services Provided
+        </Text>
         <View
           style={{
             flexDirection: "row",
             paddingHorizontal: 10,
-            paddingBottom: 60,
+            paddingBottom: 30,
           }}
         >
           <FlatList
             data={services}
-            style={{ paddingHorizontal: 10 }}
+            style={{ padding: 10 }}
             keyExtractor={(item) => item._id}
             renderItem={({ item }) => (
-              <View
-                style={{
-                  elevation: 4,
-                  backgroundColor: "#fff",
-                  shadowColor: "#000",
-                  width: 100,
-                  shadowOffset: {
-                    width: 0,
-                    height: 5,
-                  },
-                  shadowOpacity: 0.1,
-                  shadowRadius: 10,
-                  flex: 1,
-                  padding: 10,
-                  borderRadius: 10,
-                  // flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
+              <View style={globalStyles.tinyCards}>
                 <Image
                   source={{ uri: `${API_URL}common/services/${item._id}` }}
                   style={{ width: 60, height: 60 }}
@@ -121,8 +105,28 @@ const HomePage = ({ navigation }) => {
         </View>
 
         <Text style={globalStyles.title}>Areas Available</Text>
-        <Text style={globalStyles.text}>{area} (soon more…)</Text>
-        <View style={globalStyles.buttonContainer}>
+        <Text style={globalStyles.text}>
+          Anbu nagar, Ram nagar, TVS nagar, Thiagaya raja nagar
+          <Text
+            onPress={() => navigation.navigate("Areas", area.split(", "))}
+            style={{
+              color: "#3B90DA",
+              textDecorationStyle: "solid",
+              textDecorationColor: "#3B90DA",
+              textDecorationLine: "underline",
+            }}
+          >
+            (see all…)
+          </Text>
+        </Text>
+
+        <View
+          style={{
+            ...globalStyles.buttonContainer,
+            paddingTop: 50,
+            paddingBottom: 0,
+          }}
+        >
           <AppButton
             title="Place Order"
             size="sm"
