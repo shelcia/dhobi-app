@@ -6,6 +6,7 @@ import { globalStyles } from "../styles/GlobalStyles";
 import Cards from "./Cards";
 import axios from "axios";
 import Loading from "../Partials/Loading";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const AddOrder = ({ navigation }) => {
   const [items, setItems] = useState([]);
@@ -13,7 +14,7 @@ const AddOrder = ({ navigation }) => {
   const [order, setOrder] = useState({});
   const [amount, setAmount] = useState(0);
 
-  const handleAmount = (name, quantity, cost) => {
+  const handleAmount = (name, quantity, cost, flag) => {
     console.log("clicked");
     const newOrder = {
       ...order,
@@ -22,14 +23,15 @@ const AddOrder = ({ navigation }) => {
     setOrder(newOrder);
     console.log({ newOrder });
 
-    let sum = 0;
-    for (let el in newOrder) {
-      if (newOrder.hasOwnProperty(el)) {
-        sum += parseFloat(newOrder[el] * cost);
-      }
+    let newAmount = 0;
+
+    if (flag) {
+      newAmount = amount - parseInt(cost);
+    } else {
+      newAmount = amount + parseInt(cost);
     }
-    console.log(sum);
-    setAmount(sum);
+    console.log({ newAmount, flag });
+    setAmount(newAmount);
   };
   useEffect(() => {
     const ac = new AbortController();
@@ -40,7 +42,6 @@ const AddOrder = ({ navigation }) => {
           method: "get",
           url: `${API_URL}common/category`,
         });
-        // console.log(response.data);
         if (response.data.status === "200") {
           setItems(response.data.message);
         }
@@ -84,7 +85,10 @@ const AddOrder = ({ navigation }) => {
           </View>
           <AppButton
             title="Schedule Pickup"
-            onPress={() => navigation.navigate("EstimatedCost")}
+            onPress={() => {
+              navigation.navigate("EstimatedCost");
+              AsyncStorage.setItem("@iron-amount", amount);
+            }}
           />
         </View>
       </View>

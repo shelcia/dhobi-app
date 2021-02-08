@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import FooterDashboard from "../Dashboard/FooterDashbaord";
 import AppButton from "../styles/Button";
 import { globalStyles } from "../styles/GlobalStyles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const EstimatedCost = ({ navigation }) => {
+  const [amount, setAmount] = useState(0);
+
+  useEffect(() => {
+    const getAmount = async () => {
+      const amt = await AsyncStorage.getItem("@iron-amount");
+      setAmount(amt);
+    };
+    getAmount();
+  }, []);
+
   return (
     <React.Fragment>
       <View style={globalStyles.container}>
         <Text style={styles.header}>Estimated Cost</Text>
-        <Text style={styles.amount}>Rs 320</Text>
+        <Text style={styles.amount}>Rs {amount}</Text>
         <Image
           source={require("../../assets/images/receipt.png")}
           style={{

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { globalStyles } from "../styles/GlobalStyles";
-import { Text, View, Image, Keyboard } from "react-native";
+import { Text, View, Image } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { API_URL } from "../../api";
 
 const Cards = ({ item, handleAmount }) => {
   const [number, setNumber] = useState(0);
 
-  const handleNumber = (name, val, cost) => {
+  const handleNumber = (name, val, cost, flag) => {
     if (val >= 0) {
       setNumber(val);
-      handleAmount(name, val, cost);
+      handleAmount(name, val, cost, flag);
     }
   };
 
@@ -33,26 +33,17 @@ const Cards = ({ item, handleAmount }) => {
             size={24}
             color="#3B90DA"
             style={globalStyles.iconStyle}
-            onPress={() => handleNumber(item.name, number - 1, item.cost)}
+            onPress={() => handleNumber(item.name, number - 1, item.cost, true)}
           />
           <Text style={globalStyles.text}>{number}</Text>
-          {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <TextInput
-              style={globalStyles.text}
-              keyboardType={null}
-              showSoftInputOnFocus={false}
-              onChangeText={(val) => handleNumber(item.name, val, item.cost)}
-            >
-              {number}
-            </TextInput>
-          </TouchableWithoutFeedback> */}
-
           <AntDesign
             name="pluscircle"
             size={24}
             color="#3B90DA"
             style={globalStyles.iconStyle}
-            onPress={() => handleNumber(item.name, number + 1, item.cost)}
+            onPress={() =>
+              handleNumber(item.name, number + 1, item.cost, false)
+            }
           />
         </View>
       </View>
