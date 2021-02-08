@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, FlatList, Text } from "react-native";
+import { View, FlatList, Text, StyleSheet } from "react-native";
 import { API_URL } from "../../api";
 import AppButton from "../styles/Button";
 import { globalStyles } from "../styles/GlobalStyles";
@@ -10,6 +10,20 @@ import Loading from "../Partials/Loading";
 const AddOrder = () => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [order, setOrder] = useState({});
+  const [amount, setAmount] = useState(0);
+
+  const handleAmount = (name, quantity, cost) => {
+    console.log("clicked");
+    // setOrder({
+    //   ...order,
+    //   [name]: quantity,
+    // });
+    // console.log("order", {
+    //   ...order,
+    //   [name]: quantity,
+    // });
+  };
   useEffect(() => {
     const ac = new AbortController();
     const fetchCategories = async () => {
@@ -19,7 +33,7 @@ const AddOrder = () => {
           method: "get",
           url: `${API_URL}common/category`,
         });
-        console.log(response.data);
+        // console.log(response.data);
         if (response.data.status === "200") {
           setItems(response.data.message);
         }
@@ -42,15 +56,47 @@ const AddOrder = () => {
           data={items}
           style={{ paddingHorizontal: 10, paddingTop: 10 }}
           keyExtractor={(item) => item._id}
-          renderItem={({ item }) => <Cards item={item} />}
+          renderItem={({ item }) => (
+            <Cards item={item} handleAmount={handleAmount} />
+          )}
         />
         <View style={globalStyles.buttonContainer}>
-          <Text>Estimted Cost</Text>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "row",
+              marginBottom: 10,
+            }}
+          >
+            <Text style={styles.text}>Estimted Cost {"  "}</Text>
+            <Text style={styles.amount}>
+              {"  "}
+              {amount}
+            </Text>
+          </View>
           <AppButton title="Schedule Pickup" />
         </View>
       </View>
     </React.Fragment>
   );
 };
+
+const styles = StyleSheet.create({
+  text: {
+    color: "#333333",
+    fontSize: 20,
+    fontFamily: "JosefinSans_500Medium",
+    flexShrink: 1,
+    flexWrap: "wrap",
+  },
+  amount: {
+    color: "#3B90DA",
+    fontSize: 20,
+    fontFamily: "JosefinSans_500Medium",
+    flexShrink: 1,
+    flexWrap: "wrap",
+  },
+});
 
 export default AddOrder;

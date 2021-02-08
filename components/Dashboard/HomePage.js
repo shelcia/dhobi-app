@@ -29,7 +29,6 @@ const HomePage = ({ navigation }) => {
           axios.get(`${API_URL}common/services`),
           axios.get(`${API_URL}common/banners`),
         ]);
-        console.log(firstResponse.data);
         if (
           firstResponse.data.status === "200" &&
           secondResponse.data.status === "200" &&
