@@ -17,7 +17,8 @@ export const globalStyles = StyleSheet.create({
     fontFamily: "JosefinSans_400Regular",
   },
   button: {
-    paddingHorizontal: 60,
+    width: 300,
+    // paddingHorizontal: 60,
     paddingVertical: 20,
     backgroundColor: "#3B90DA",
     borderRadius: 50,

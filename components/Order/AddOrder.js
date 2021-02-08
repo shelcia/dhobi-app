@@ -7,7 +7,7 @@ import Cards from "./Cards";
 import axios from "axios";
 import Loading from "../Partials/Loading";
 
-const AddOrder = () => {
+const AddOrder = ({ navigation }) => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [order, setOrder] = useState({});
@@ -15,14 +15,21 @@ const AddOrder = () => {
 
   const handleAmount = (name, quantity, cost) => {
     console.log("clicked");
-    // setOrder({
-    //   ...order,
-    //   [name]: quantity,
-    // });
-    // console.log("order", {
-    //   ...order,
-    //   [name]: quantity,
-    // });
+    const newOrder = {
+      ...order,
+      [name]: quantity,
+    };
+    setOrder(newOrder);
+    console.log({ newOrder });
+
+    let sum = 0;
+    for (let el in newOrder) {
+      if (newOrder.hasOwnProperty(el)) {
+        sum += parseFloat(newOrder[el] * cost);
+      }
+    }
+    console.log(sum);
+    setAmount(sum);
   };
   useEffect(() => {
     const ac = new AbortController();
@@ -66,7 +73,7 @@ const AddOrder = () => {
               justifyContent: "center",
               alignItems: "center",
               flexDirection: "row",
-              marginBottom: 10,
+              marginBottom: 15,
             }}
           >
             <Text style={styles.text}>Estimated Cost {"  "}</Text>
@@ -75,7 +82,10 @@ const AddOrder = () => {
               {amount}
             </Text>
           </View>
-          <AppButton title="Schedule Pickup" />
+          <AppButton
+            title="Schedule Pickup"
+            onPress={() => navigation.navigate("EstimatedCost")}
+          />
         </View>
       </View>
     </React.Fragment>

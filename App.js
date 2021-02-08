@@ -39,6 +39,7 @@ import Loading from "./components/Partials/Loading";
 import HomePage from "./components/Dashboard/HomePage";
 import AddOrder from "./components/Order/AddOrder";
 import Areas from "./components/Dashboard/Areas";
+import EstimatedCost from "./components/Order/EstimatedCost";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -113,6 +114,11 @@ export default function App() {
             name="AddOrder"
             component={AddOrder}
             options={{ title: "Place Order!!" }}
+          />
+          <Stack.Screen
+            name="EstimatedCost"
+            component={EstimatedCost}
+            options={{ title: "Estimated Cost" }}
           />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Signup" component={Signup} />
