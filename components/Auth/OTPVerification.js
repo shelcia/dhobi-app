@@ -36,13 +36,11 @@ const OTPVerification = ({ navigation }) => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const number = await AsyncStorage.getItem("@number");
-        const password = await AsyncStorage.getItem("@password");
+        const number = await AsyncStorage.getItem("@iron_number");
+        const password = await AsyncStorage.getItem("@iron_password");
         if (number !== null || password !== null) {
           // value previously stored
-          console.log("number", number);
           setNumber(number);
-          console.log("password", password);
         }
       } catch (e) {
         // error reading value
@@ -112,7 +110,9 @@ const OTPVerification = ({ navigation }) => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={globalStyles.container}>
-        <Text style={globalStyles.title}>OTP Verification</Text>
+        <Text style={{ ...globalStyles.title, paddingVertical: 30 }}>
+          OTP Verification
+        </Text>
         <View>
           <FirebaseRecaptchaVerifierModal
             ref={recaptchaVerifier}

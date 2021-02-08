@@ -161,6 +161,31 @@ export const globalStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
+  label: {
+    color: "#3B90DA",
+    fontFamily: "JosefinSans_500Medium",
+    fontSize: 17,
+    textAlign: "left",
+  },
+  input: {
+    marginVertical: 30,
+    borderBottomWidth: 1.5,
+    borderColor: "#3B90DA",
+    paddingVertical: 10,
+    width: 350,
+    fontFamily: "JosefinSans_500Medium",
+  },
+  authLink: {
+    color: "#3B90DA",
+    fontStyle: "italic",
+    fontFamily: "JosefinSans_600SemiBold_Italic",
+    textDecorationLine: "underline",
+  },
+  labelText: {
+    color: "#3B90DA",
+    fontSize: 15,
+    fontFamily: "JosefinSans_500Medium",
+  },
   // footertext: {
   //   fontFamily: "JosefinSans_400Regular",
   //   marginTop: 5,

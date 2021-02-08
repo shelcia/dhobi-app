@@ -19,8 +19,8 @@ const Signup = ({ navigation }) => {
 
   const storeData = async () => {
     try {
-      await AsyncStorage.setItem("@number", uname);
-      await AsyncStorage.setItem("@password", password);
+      await AsyncStorage.setItem("@iron_number", uname);
+      await AsyncStorage.setItem("@iron_password", password);
     } catch (e) {
       // saving error
       console.log(e);
@@ -45,7 +45,9 @@ const Signup = ({ navigation }) => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={globalStyles.container}>
-        <Text style={globalStyles.title}>Signup</Text>
+        <Text style={{ ...globalStyles.title, paddingVertical: 30 }}>
+          Signup
+        </Text>
         <View>
           <Text style={globalStyles.label}>Mobile Number</Text>
           <TextInput

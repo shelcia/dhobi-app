@@ -7,12 +7,15 @@ import Cards from "./Cards";
 import axios from "axios";
 import Loading from "../Partials/Loading";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useContext } from "react";
+import { OrderContext } from "../Context/OrderContext";
+import { AmountContext } from "../Context/AmountContext";
 
 const AddOrder = ({ navigation }) => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [order, setOrder] = useState({});
-  const [amount, setAmount] = useState(0);
+  const [order, setOrder] = useContext(OrderContext);
+  const [amount, setAmount] = useContext(AmountContext);
 
   const handleAmount = (name, quantity, cost, flag) => {
     console.log("clicked");
@@ -21,16 +24,13 @@ const AddOrder = ({ navigation }) => {
       [name]: quantity,
     };
     setOrder(newOrder);
-    console.log({ newOrder });
 
     let newAmount = 0;
-
     if (flag) {
       newAmount = amount - parseInt(cost);
     } else {
       newAmount = amount + parseInt(cost);
     }
-    console.log({ newAmount, flag });
     setAmount(newAmount);
   };
   useEffect(() => {
@@ -55,6 +55,7 @@ const AddOrder = ({ navigation }) => {
     }
     return () => ac.abort();
   }, []);
+
   return isLoading ? (
     <Loading />
   ) : (
@@ -85,10 +86,7 @@ const AddOrder = ({ navigation }) => {
           </View>
           <AppButton
             title="Schedule Pickup"
-            onPress={() => {
-              navigation.navigate("EstimatedCost");
-              AsyncStorage.setItem("@iron-amount", amount);
-            }}
+            onPress={() => navigation.navigate("EstimatedCost")}
           />
         </View>
       </View>

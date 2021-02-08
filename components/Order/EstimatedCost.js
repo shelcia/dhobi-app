@@ -4,16 +4,24 @@ import FooterDashboard from "../Dashboard/FooterDashbaord";
 import AppButton from "../styles/Button";
 import { globalStyles } from "../styles/GlobalStyles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useContext } from "react";
+import { AmountContext } from "../Context/AmountContext";
+import { TextInput } from "react-native-gesture-handler";
 
 const EstimatedCost = ({ navigation }) => {
-  const [amount, setAmount] = useState(0);
+  const [amount] = useContext(AmountContext);
+  const [authReq, setAuthReq] = useState(true);
 
   useEffect(() => {
-    const getAmount = async () => {
-      const amt = await AsyncStorage.getItem("@iron-amount");
-      setAmount(amt);
+    const getPhone = async () => {
+      const phone = await AsyncStorage.getItem("@iron_phone");
+      if (phone) {
+        setAuthReq(false);
+      } else {
+        setAuthReq(true);
+      }
     };
-    getAmount();
+    getPhone();
   }, []);
 
   return (
@@ -29,24 +37,39 @@ const EstimatedCost = ({ navigation }) => {
             width: 310,
           }}
         />
-        <Text style={{ ...styles.header, marginBottom: 20 }}>
-          To Continue Shopping
-        </Text>
+        {authReq ? (
+          <React.Fragment>
+            <Text style={{ ...styles.header, marginBottom: 20 }}>
+              To Continue Shopping
+            </Text>
 
-        <View style={{ ...globalStyles.buttonContainer, marginVertical: 0 }}>
-          <AppButton title="Signup" />
-          <Text
-            style={{
-              fontSize: 15,
-              fontFamily: "JosefinSans_500Medium",
-              marginBottom: 10,
-            }}
-          >
-            OR
-          </Text>
-          <AppButton title="Login " />
-        </View>
+            <View
+              style={{ ...globalStyles.buttonContainer, marginVertical: 0 }}
+            >
+              <AppButton
+                title="Signup"
+                onPress={() => navigation.navigate("Signup")}
+              />
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontFamily: "JosefinSans_500Medium",
+                  marginBottom: 10,
+                }}
+              >
+                OR
+              </Text>
+              <AppButton title="Login" />
+            </View>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <Text>Address</Text>
+            <TextInput placeholder="Pick up dat" />
+          </React.Fragment>
+        )}
       </View>
+
       <FooterDashboard navigation={navigation} />
     </React.Fragment>
   );

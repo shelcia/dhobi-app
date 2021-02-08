@@ -40,6 +40,8 @@ import HomePage from "./components/Dashboard/HomePage";
 import AddOrder from "./components/Order/AddOrder";
 import Areas from "./components/Dashboard/Areas";
 import EstimatedCost from "./components/Order/EstimatedCost";
+import { OrderProvider } from "./components/Context/OrderContext";
+import { AmountProvider } from "./components/Context/AmountContext";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -74,60 +76,67 @@ export default function App() {
     return <Loading />;
   } else
     return (
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Welcome"
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: "#fff",
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.05,
-              shadowRadius: 2.62,
-              elevation: 4,
-            },
-            headerTitleStyle: {
-              fontFamily: "JosefinSans_300Light",
-              color: "#65ABEA",
-            },
-          }}
-        >
-          <Stack.Screen
-            name="Welcome"
-            component={Welcome}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="HomePage"
-            component={HomePage}
-            options={{ title: "Vanakkam!!", headerBackAccessibilityLabel: "" }}
-          />
-          <Stack.Screen
-            name="Areas"
-            component={Areas}
-            options={{ title: "Areas Available" }}
-          />
-          <Stack.Screen
-            name="AddOrder"
-            component={AddOrder}
-            options={{ title: "Place Order!!" }}
-          />
-          <Stack.Screen
-            name="EstimatedCost"
-            component={EstimatedCost}
-            options={{ title: "Estimated Cost" }}
-          />
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Signup" component={Signup} />
-          <Stack.Screen
-            name="OTP"
-            component={OTPVerification}
-            options={{ title: "OTP Verification" }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <OrderProvider>
+        <AmountProvider>
+          <NavigationContainer>
+            <Stack.Navigator
+              initialRouteName="Welcome"
+              screenOptions={{
+                headerStyle: {
+                  backgroundColor: "#fff",
+                  shadowColor: "#000",
+                  shadowOffset: {
+                    width: 0,
+                    height: 2,
+                  },
+                  shadowOpacity: 0.05,
+                  shadowRadius: 2.62,
+                  elevation: 4,
+                },
+                headerTitleStyle: {
+                  fontFamily: "JosefinSans_300Light",
+                  color: "#65ABEA",
+                },
+              }}
+            >
+              <Stack.Screen
+                name="Welcome"
+                component={Welcome}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="HomePage"
+                component={HomePage}
+                options={{
+                  title: "Vanakkam!!",
+                  headerBackAccessibilityLabel: "",
+                }}
+              />
+              <Stack.Screen
+                name="Areas"
+                component={Areas}
+                options={{ title: "Areas Available" }}
+              />
+              <Stack.Screen
+                name="AddOrder"
+                component={AddOrder}
+                options={{ title: "Place Order!!" }}
+              />
+              <Stack.Screen
+                name="EstimatedCost"
+                component={EstimatedCost}
+                options={{ title: "Estimated Cost" }}
+              />
+              <Stack.Screen name="Login" component={Login} />
+              <Stack.Screen name="Signup" component={Signup} />
+              <Stack.Screen
+                name="OTP"
+                component={OTPVerification}
+                options={{ title: "OTP Verification" }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </AmountProvider>
+      </OrderProvider>
     );
 }
