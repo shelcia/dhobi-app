@@ -19,7 +19,6 @@ const AddOrder = ({ navigation }) => {
   const [amount, setAmount] = useContext(AmountContext);
 
   const handleAmount = (name, quantity, cost, flag) => {
-    console.log("clicked");
     const newOrder = {
       ...order,
       [name]: quantity,

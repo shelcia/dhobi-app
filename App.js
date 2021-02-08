@@ -42,6 +42,7 @@ import Areas from "./components/Dashboard/Areas";
 import EstimatedCost from "./components/Order/EstimatedCost";
 import { OrderProvider } from "./components/Context/OrderContext";
 import { AmountProvider } from "./components/Context/AmountContext";
+import AddAddress from "./components/Auth/AddAdress";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -133,6 +134,11 @@ export default function App() {
                 name="OTP"
                 component={OTPVerification}
                 options={{ title: "OTP Verification" }}
+              />
+              <Stack.Screen
+                name="AddAddress"
+                component={AddAddress}
+                options={{ title: "Add Address" }}
               />
             </Stack.Navigator>
           </NavigationContainer>

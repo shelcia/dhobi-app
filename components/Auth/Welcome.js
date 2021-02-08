@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-undef */
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import AppButton from "../styles/Button";
