@@ -137,10 +137,10 @@ export const globalStyles = StyleSheet.create({
     elevation: 4,
     shadowColor: "#000",
     shadowOffset: {
-      width: 0,
-      height: 3,
+      width: 5,
+      height: 5,
     },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.15,
     shadowRadius: 10,
   },
   tinyCards: {

@@ -69,7 +69,7 @@ const AddOrder = () => {
               marginBottom: 10,
             }}
           >
-            <Text style={styles.text}>Estimted Cost {"  "}</Text>
+            <Text style={styles.text}>Estimated Cost {"  "}</Text>
             <Text style={styles.amount}>
               {"  "}
               {amount}
