@@ -6,7 +6,6 @@ import AppButton from "../styles/Button";
 import { globalStyles } from "../styles/GlobalStyles";
 import Cards from "./Cards";
 import axios from "axios";
-// import Loading from "../Partials/Loading";
 import { OrderContext } from "../Context/OrderContext";
 import { AmountContext } from "../Context/AmountContext";
 import MiniLoader from "../Partials/MiniLoader";
@@ -76,10 +75,10 @@ const AddOrder = ({ navigation }) => {
               marginBottom: 15,
             }}
           >
-            <Text style={styles.text}>Estimated Cost {"  "}</Text>
+            <Text style={styles.text}>Estimated Cost </Text>
             <Text style={styles.amount}>
               {"  "}
-              {amount}
+              Rs {amount}
             </Text>
           </View>
           <AppButton

@@ -48,6 +48,7 @@ import AddPickup from "./components/Order/AddPickup";
 import OrderDetails from "./components/Order/OrderDetails";
 import SuccesfullyPlaced from "./components/Order/SuccesfullyPlaced";
 import Order from "./components/Order/Orders";
+import PostOrderDetails from "./components/Order/PostOrderDetails";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -165,6 +166,11 @@ export default function App() {
                   name="Order"
                   component={Order}
                   options={{ title: "My Orders" }}
+                />
+                <Stack.Screen
+                  name="PostOrderDetails"
+                  component={PostOrderDetails}
+                  options={{ title: "Order Details" }}
                 />
               </Stack.Navigator>
             </NavigationContainer>

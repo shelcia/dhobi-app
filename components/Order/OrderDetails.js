@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import { View, Text } from "react-native";
 import { API_URL } from "../../api";
+import { AmountContext } from "../Context/AmountContext";
 import { OrderContext } from "../Context/OrderContext";
 import { PickupContext } from "../Context/PickupContext";
 import AppButton from "../styles/Button";
@@ -13,8 +14,9 @@ const OrderDetails = ({ navigation }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [order] = useContext(OrderContext);
-  const [pickup] = useContext(PickupContext);
+  const [amount, setAmount] = useContext(AmountContext);
+  const [order, setOrder] = useContext(OrderContext);
+  const [pickup, setPickup] = useContext(PickupContext);
   const [items, setItems] = useState([]);
   const [error, setError] = useState("");
 
@@ -97,6 +99,9 @@ const OrderDetails = ({ navigation }) => {
         console.log(response.data);
         if (response.data.status === "200") {
           navigation.navigate("SuccesfullyPlaced");
+          setAmount(0);
+          setOrder({});
+          setPickup("");
         } else {
           setError(response.data.message);
         }
@@ -141,6 +146,10 @@ const OrderDetails = ({ navigation }) => {
             <Text style={globalStyles.entryText}>
               {pickup ? convertDate(pickup) : ""}
             </Text>
+          </View>
+          <View style={globalStyles.rowTable}>
+            <Text style={globalStyles.entries}>Estimated AMount</Text>
+            <Text style={globalStyles.entryText}>{amount}</Text>
           </View>
         </View>
         <Text style={globalStyles.warning}>{error}</Text>
