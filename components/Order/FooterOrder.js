@@ -9,7 +9,7 @@ import {
 } from "@expo/vector-icons";
 import { globalStyles } from "../styles/GlobalStyles";
 
-const FooterDashboard = ({ navigation }) => {
+const FooterOrder = ({ navigation }) => {
   return (
     <React.Fragment>
       <View style={globalStyles.footer}>
@@ -18,7 +18,7 @@ const FooterDashboard = ({ navigation }) => {
           style={globalStyles.footersection}
         >
           <View style={globalStyles.footerlinks}>
-            <AntDesign name="home" size={25} color="#65ABEA" />
+            <AntDesign name="home" size={25} color="#A5A5A5" />
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -26,7 +26,7 @@ const FooterDashboard = ({ navigation }) => {
           style={globalStyles.footersection}
         >
           <View style={globalStyles.footerlinks}>
-            <FontAwesome5 name="list-alt" size={25} color="#A5A5A5" />
+            <FontAwesome5 name="list-alt" size={25} color="#65ABEA" />
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -54,4 +54,4 @@ const FooterDashboard = ({ navigation }) => {
   );
 };
 
-export default FooterDashboard;
+export default FooterOrder;

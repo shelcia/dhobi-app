@@ -6,9 +6,10 @@ import AppButton from "../styles/Button";
 import { globalStyles } from "../styles/GlobalStyles";
 import Cards from "./Cards";
 import axios from "axios";
-import Loading from "../Partials/Loading";
+// import Loading from "../Partials/Loading";
 import { OrderContext } from "../Context/OrderContext";
 import { AmountContext } from "../Context/AmountContext";
+import MiniLoader from "../Partials/MiniLoader";
 
 const AddOrder = ({ navigation }) => {
   const [items, setItems] = useState([]);
@@ -54,7 +55,7 @@ const AddOrder = ({ navigation }) => {
   }, []);
 
   return isLoading ? (
-    <Loading />
+    <MiniLoader content="Fetching Prices .." />
   ) : (
     <React.Fragment>
       <View style={globalStyles.container}>

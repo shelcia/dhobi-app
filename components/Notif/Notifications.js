@@ -1,10 +1,15 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
+import { globalStyles } from "../styles/GlobalStyles";
 
 const Notification = () => {
   return (
     <React.Fragment>
-      <Text>New Order</Text>
+      <View style={globalStyles.container}>
+        <Text style={{ ...globalStyles.title, marginVertical: 30 }}>
+          Notifications
+        </Text>
+      </View>
     </React.Fragment>
   );
 };

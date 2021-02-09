@@ -217,6 +217,13 @@ export const globalStyles = StyleSheet.create({
     flexShrink: 1,
     flexWrap: "wrap",
   },
+  boldText: {
+    color: "#3B90DA",
+    fontFamily: "JosefinSans_700Bold",
+    marginTop: 40,
+    fontSize: 24,
+    textTransform: "uppercase",
+  },
   // footertext: {
   //   fontFamily: "JosefinSans_400Regular",
   //   marginTop: 5,
