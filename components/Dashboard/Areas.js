@@ -1,11 +1,12 @@
+/* eslint-disable react/prop-types */
 import React from "react";
-import { Text, View, Dimensions, FlatList, Image } from "react-native";
+import { Text, View, Dimensions, FlatList } from "react-native";
 import { globalStyles } from "../styles/GlobalStyles";
 import { AntDesign } from "@expo/vector-icons";
 import AppButton from "../styles/Button";
 
 const Areas = ({ navigation, route }) => {
-  console.log("route", route.params);
+  // console.log("route", route.params);
   const area = route.params;
 
   return (

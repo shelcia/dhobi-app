@@ -100,6 +100,7 @@ const OTPVerification = ({ navigation }) => {
       setVerificationId("");
       setVerificationCode("");
       verificationCodeTextInput.current?.clear();
+      navigation.navigate("AddAddress");
     } catch (err) {
       setConfirmError(err);
       setConfirmInProgress(false);
@@ -192,11 +193,15 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontWeight: "bold",
     color: "red",
+    flexShrink: 1,
+    flexWrap: "wrap",
   },
   success: {
     marginTop: 10,
     fontWeight: "bold",
     color: "green",
+    flexShrink: 1,
+    flexWrap: "wrap",
   },
   loader: {
     marginTop: 10,
