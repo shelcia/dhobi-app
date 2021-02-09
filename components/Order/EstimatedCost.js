@@ -8,17 +8,21 @@ import { globalStyles } from "../styles/GlobalStyles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useContext } from "react";
 import { AmountContext } from "../Context/AmountContext";
-import { TextInput } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native-gesture-handler";
+// import { TextInput } from "react-native-gesture-handler";
 
 const EstimatedCost = ({ navigation }) => {
   const [amount] = useContext(AmountContext);
   const [authReq, setAuthReq] = useState(true);
+  const [address, setAddress] = useState("");
 
   useEffect(() => {
     const getPhone = async () => {
       const phone = await AsyncStorage.getItem("@iron_phone");
+      const add = await AsyncStorage.getItem("@iron_address");
       if (phone) {
         setAuthReq(false);
+        setAddress(add);
       } else {
         setAuthReq(true);
       }
@@ -31,16 +35,17 @@ const EstimatedCost = ({ navigation }) => {
       <View style={globalStyles.container}>
         <Text style={styles.header}>Estimated Cost</Text>
         <Text style={styles.amount}>Rs {amount}</Text>
-        <Image
-          source={require("../../assets/images/receipt.png")}
-          style={{
-            resizeMode: "cover",
-            height: 279,
-            width: 310,
-          }}
-        />
+
         {authReq ? (
           <React.Fragment>
+            <Image
+              source={require("../../assets/images/receipt.png")}
+              style={{
+                resizeMode: "cover",
+                height: 279,
+                width: 310,
+              }}
+            />
             <Text style={{ ...styles.header, marginBottom: 20 }}>
               To Continue Shopping
             </Text>
@@ -66,8 +71,25 @@ const EstimatedCost = ({ navigation }) => {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Text>Address</Text>
-            <TextInput placeholder="Pick up dat" />
+            <Text style={globalStyles.title}>Address</Text>
+            <Text
+              style={{
+                ...globalStyles.text,
+                marginHorizontal: 24,
+                fontSize: 16,
+                marginTop: 20,
+                marginBottom: 30,
+              }}
+            >
+              {address}
+            </Text>
+            <TouchableOpacity style={{ marginBottom: 50 }}>
+              <Text style={globalStyles.authLink}>Edit Address</Text>
+            </TouchableOpacity>
+            <AppButton
+              title="Confirm Address"
+              onPress={() => navigation.navigate("AddPickup")}
+            />
           </React.Fragment>
         )}
       </View>

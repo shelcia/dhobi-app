@@ -1,17 +1,22 @@
+/* eslint-disable react/prop-types */
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import { View, Text } from "react-native";
+import { API_URL } from "../../api";
 import { OrderContext } from "../Context/OrderContext";
 import { PickupContext } from "../Context/PickupContext";
 import AppButton from "../styles/Button";
 import { globalStyles } from "../styles/GlobalStyles";
 
-const OrderDetails = () => {
+const OrderDetails = ({ navigation }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [order] = useContext(OrderContext);
   const [pickup] = useContext(PickupContext);
+  const [items, setItems] = useState([]);
+  const [error, setError] = useState("");
 
   const convertDate = (date) => {
     const dates = new Date(date);
@@ -25,10 +30,12 @@ const OrderDetails = () => {
     return formattedDate;
   };
 
+  console.log([order]);
+
   useEffect(() => {
     const getData = async () => {
       try {
-        const add = await AsyncStorage.getItem("@iron-address");
+        const add = await AsyncStorage.getItem("@iron_address");
         const name = await AsyncStorage.getItem("@iron_name");
         const phone = await AsyncStorage.getItem("@iron_number");
         // const phone = await AsyncStorage.getItem("@iron_number");
@@ -42,10 +49,67 @@ const OrderDetails = () => {
     getData();
   }, []);
 
+  useEffect(() => {
+    const ac = new AbortController();
+    const fetchCategories = async () => {
+      try {
+        const response = await axios({
+          method: "get",
+          url: `${API_URL}common/category`,
+        });
+        if (response.data.status === "200") {
+          const names = response.data.message.map((cat) => cat.name);
+          console.log(names);
+          setItems(names);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (items.length === 0) {
+      fetchCategories();
+    }
+    return () => ac.abort();
+  }, []);
+
+  const placeOrder = () => {
+    const response = {
+      name: name,
+      phone: phone,
+      orderDetails: order,
+      address: address,
+      status: "Request under validation",
+      pickup: pickup,
+    };
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    // const body = JSON.stringify(response);
+    const url = `${API_URL}common/orders`;
+    console.log(response);
+
+    axios
+      .post(url, response, {
+        headers: headers,
+      })
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.status === "200") {
+          navigation.navigate("SuccesfullyPlaced");
+        } else {
+          setError(response.data.message);
+        }
+      })
+      .catch(() => setError("Server Error"));
+  };
+
   return (
     <React.Fragment>
       <View style={globalStyles.container}>
-        <Text style={globalStyles.title}>Order Details</Text>
+        <Text style={{ ...globalStyles.title, paddingTop: 30 }}>
+          Order Details
+        </Text>
         <View style={globalStyles.table}>
           <View style={globalStyles.rowTable}>
             <Text style={globalStyles.entries}>Name</Text>
@@ -61,7 +125,16 @@ const OrderDetails = () => {
           </View>
           <View style={globalStyles.rowTable}>
             <Text style={globalStyles.entries}>Order</Text>
-            <Text style={globalStyles.entryText}>shirt x {order.shirt}</Text>
+            <Text style={globalStyles.entryText}>
+              {items.map(
+                (item) =>
+                  order[item] && (
+                    <Text key={item}>
+                      {item} x {order[item]},{" "}
+                    </Text>
+                  )
+              )}
+            </Text>
           </View>
           <View style={globalStyles.rowTable}>
             <Text style={globalStyles.entries}>Pickup Date</Text>
@@ -70,8 +143,9 @@ const OrderDetails = () => {
             </Text>
           </View>
         </View>
+        <Text style={globalStyles.warning}>{error}</Text>
         <View style={globalStyles.buttonContainer}>
-          <AppButton title="Coonfirm Order" />
+          <AppButton title="Confirm Order" onPress={placeOrder} />
         </View>
       </View>
     </React.Fragment>

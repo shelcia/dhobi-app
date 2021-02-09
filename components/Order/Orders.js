@@ -1,11 +1,14 @@
 import React from "react";
 // import { useState } from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
+import { globalStyles } from "../styles/GlobalStyles";
 
 const Order = () => {
   return (
     <React.Fragment>
-      <Text>Order</Text>
+      <View style={globalStyles.container}>
+        <Text style={globalStyles.title}>Order</Text>
+      </View>
     </React.Fragment>
   );
 };

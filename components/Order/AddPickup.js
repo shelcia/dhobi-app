@@ -1,12 +1,15 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
+import { useContext } from "react";
 import { View, Text, Image } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { PickupContext } from "../Context/PickupContext";
 import AppButton from "../styles/Button";
 import { globalStyles } from "../styles/GlobalStyles";
 
-const AddPickup = () => {
+const AddPickup = ({ navigation }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [pickup, setPickup] = useState("");
+  const [pickup, setPickup] = useContext(PickupContext);
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -70,7 +73,12 @@ const AddPickup = () => {
             marginTop: 100,
           }}
         >
-          {pickup !== "" && <AppButton title="Confirm Pickup time" />}
+          {pickup !== "" && (
+            <AppButton
+              title="Confirm Pickup time"
+              onPress={() => navigation.navigate("OrderDetails")}
+            />
+          )}
         </View>
       </View>
     </React.Fragment>
