@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { View, FlatList, Text, StyleSheet } from "react-native";
 import { API_URL } from "../../api";
 import AppButton from "../styles/Button";
@@ -7,8 +7,6 @@ import { globalStyles } from "../styles/GlobalStyles";
 import Cards from "./Cards";
 import axios from "axios";
 import Loading from "../Partials/Loading";
-// import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useContext } from "react";
 import { OrderContext } from "../Context/OrderContext";
 import { AmountContext } from "../Context/AmountContext";
 
@@ -24,7 +22,6 @@ const AddOrder = ({ navigation }) => {
       [name]: quantity,
     };
     setOrder(newOrder);
-
     let newAmount = 0;
     if (flag) {
       newAmount = amount - parseInt(cost);

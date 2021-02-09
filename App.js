@@ -42,7 +42,10 @@ import Areas from "./components/Dashboard/Areas";
 import EstimatedCost from "./components/Order/EstimatedCost";
 import { OrderProvider } from "./components/Context/OrderContext";
 import { AmountProvider } from "./components/Context/AmountContext";
+import { PickupProvider } from "./components/Context/PickupContext";
 import AddAddress from "./components/Auth/AddAdress";
+import AddPickup from "./components/Order/AddPickup";
+import OrderDetails from "./components/Order/OrderDetails";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -79,69 +82,81 @@ export default function App() {
     return (
       <OrderProvider>
         <AmountProvider>
-          <NavigationContainer>
-            <Stack.Navigator
-              initialRouteName="Welcome"
-              screenOptions={{
-                headerStyle: {
-                  backgroundColor: "#fff",
-                  shadowColor: "#000",
-                  shadowOffset: {
-                    width: 0,
-                    height: 2,
+          <PickupProvider>
+            <NavigationContainer>
+              <Stack.Navigator
+                initialRouteName="Welcome"
+                screenOptions={{
+                  headerStyle: {
+                    backgroundColor: "#fff",
+                    shadowColor: "#000",
+                    shadowOffset: {
+                      width: 0,
+                      height: 2,
+                    },
+                    shadowOpacity: 0.05,
+                    shadowRadius: 2.62,
+                    elevation: 4,
                   },
-                  shadowOpacity: 0.05,
-                  shadowRadius: 2.62,
-                  elevation: 4,
-                },
-                headerTitleStyle: {
-                  fontFamily: "JosefinSans_300Light",
-                  color: "#65ABEA",
-                },
-              }}
-            >
-              <Stack.Screen
-                name="Welcome"
-                component={Welcome}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="HomePage"
-                component={HomePage}
-                options={{
-                  title: "Vanakkam!!",
-                  headerBackAccessibilityLabel: "",
+                  headerTitleStyle: {
+                    fontFamily: "JosefinSans_300Light",
+                    color: "#65ABEA",
+                  },
                 }}
-              />
-              <Stack.Screen
-                name="Areas"
-                component={Areas}
-                options={{ title: "Areas Available" }}
-              />
-              <Stack.Screen
-                name="AddOrder"
-                component={AddOrder}
-                options={{ title: "Place Order!!" }}
-              />
-              <Stack.Screen
-                name="EstimatedCost"
-                component={EstimatedCost}
-                options={{ title: "Estimated Cost" }}
-              />
-              <Stack.Screen name="Login" component={Login} />
-              <Stack.Screen name="Signup" component={Signup} />
-              <Stack.Screen
-                name="OTP"
-                component={OTPVerification}
-                options={{ title: "OTP Verification" }}
-              />
-              <Stack.Screen
-                name="AddAddress"
-                component={AddAddress}
-                options={{ title: "Add Address" }}
-              />
-            </Stack.Navigator>
-          </NavigationContainer>
+              >
+                <Stack.Screen
+                  name="Welcome"
+                  component={Welcome}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="HomePage"
+                  component={HomePage}
+                  options={{
+                    title: "Vanakkam!!",
+                    headerBackAccessibilityLabel: "",
+                  }}
+                />
+                <Stack.Screen
+                  name="Areas"
+                  component={Areas}
+                  options={{ title: "Areas Available" }}
+                />
+                <Stack.Screen
+                  name="AddOrder"
+                  component={AddOrder}
+                  options={{ title: "Place Order!!" }}
+                />
+                <Stack.Screen
+                  name="EstimatedCost"
+                  component={EstimatedCost}
+                  options={{ title: "Estimated Cost" }}
+                />
+                <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="Signup" component={Signup} />
+                <Stack.Screen
+                  name="OTP"
+                  component={OTPVerification}
+                  options={{ title: "OTP Verification" }}
+                />
+                <Stack.Screen
+                  name="AddAddress"
+                  component={AddAddress}
+                  options={{ title: "Add Address" }}
+                />
+                <Stack.Screen
+                  name="AddPickup"
+                  component={AddPickup}
+                  options={{ title: "Add Pickup" }}
+                />
+                <Stack.Screen
+                  name="OrderDetails"
+                  component={OrderDetails}
+                  options={{ title: "Order Details" }}
+                />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </PickupProvider>
         </AmountProvider>
       </OrderProvider>
     );
