@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { View, Text } from "react-native";
 import { OrderContext } from "../Context/OrderContext";
 import { PickupContext } from "../Context/PickupContext";
+import AppButton from "../styles/Button";
 import { globalStyles } from "../styles/GlobalStyles";
 
 const OrderDetails = () => {
@@ -68,6 +69,9 @@ const OrderDetails = () => {
               {pickup ? convertDate(pickup) : ""}
             </Text>
           </View>
+        </View>
+        <View style={globalStyles.buttonContainer}>
+          <AppButton title="Coonfirm Order" />
         </View>
       </View>
     </React.Fragment>
