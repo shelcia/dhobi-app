@@ -9,7 +9,7 @@ import {
 } from "@expo/vector-icons";
 import { globalStyles } from "../styles/GlobalStyles";
 
-const FooterOrder = ({ navigation }) => {
+const FooterProfile = ({ navigation }) => {
   return (
     <React.Fragment>
       <View style={globalStyles.footer}>
@@ -26,7 +26,7 @@ const FooterOrder = ({ navigation }) => {
           style={globalStyles.footersection}
         >
           <View style={globalStyles.footerlinks}>
-            <FontAwesome5 name="list-alt" size={25} color="#65ABEA" />
+            <FontAwesome5 name="list-alt" size={25} color="#A5A5A5" />
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -46,7 +46,7 @@ const FooterOrder = ({ navigation }) => {
           style={globalStyles.footersection}
         >
           <View style={globalStyles.footerlinks}>
-            <Feather name="user" size={24} color="#A5A5A5" />
+            <Feather name="user" size={24} color="#65ABEA" />
           </View>
         </TouchableOpacity>
       </View>
@@ -54,4 +54,4 @@ const FooterOrder = ({ navigation }) => {
   );
 };
 
-export default FooterOrder;
+export default FooterProfile;

@@ -37,7 +37,7 @@ const Order = ({ navigation }) => {
       });
       console.log(response.data);
       if (response.data.status === "200") {
-        setOrders(response.data.message);
+        setOrders(response.data.message.reverse());
         setIsLoading(false);
       }
     } catch (error) {

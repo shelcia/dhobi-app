@@ -42,7 +42,7 @@ const FooterDashboard = ({ navigation }) => {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate("HomePage")}
+          onPress={() => navigation.navigate("Profile")}
           style={globalStyles.footersection}
         >
           <View style={globalStyles.footerlinks}>

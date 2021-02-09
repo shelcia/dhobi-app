@@ -70,7 +70,7 @@ const Signup = ({ navigation }) => {
               style={globalStyles.input}
               keyboardType="phone-pad"
               textContentType="telephoneNumber"
-              placeholder="Enter your number (+91 99999 99999)"
+              placeholder="Number (+91 99999 99999) with code"
               onChangeText={(val) => setUname(val)}
             />
             <Text style={globalStyles.label}>Password</Text>
