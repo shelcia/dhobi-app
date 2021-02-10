@@ -25,12 +25,14 @@ const Order = ({ navigation }) => {
 
   const fetchOrders = async () => {
     setIsLoading(true);
+    const phone = await AsyncStorage.getItem("@iron_number");
+    if (!phone) {
+      setOrders([]);
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      const phone = await AsyncStorage.getItem("@iron_number");
-      if (!phone) {
-        setOrders([]);
-        return;
-      }
       const response = await axios({
         method: "get",
         url: `${API_URL}common/orders/${phone}`,

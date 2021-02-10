@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { Text, View, Image } from "react-native";
 import { API_URL } from "../../api";
 import MiniLoader from "../Partials/MiniLoader";
 import AppButton from "../styles/Button";
@@ -20,13 +21,19 @@ const Profile = ({ navigation }) => {
 
   useEffect(() => {
     const fetchUsers = async () => {
+      const phone = await AsyncStorage.getItem("@iron_number");
+
+      if (!phone) {
+        setUser({
+          name: "",
+          phone: "",
+          address: "",
+          date: "",
+        });
+        return;
+      }
       setIsLoading(true);
       try {
-        const phone = await AsyncStorage.getItem("@iron_number");
-        if (!phone) {
-          setUser([]);
-          return;
-        }
         const response = await axios({
           method: "get",
           url: `${API_URL}common/orders/${phone}`,
@@ -64,29 +71,53 @@ const Profile = ({ navigation }) => {
         <Text style={{ ...globalStyles.title, paddingVertical: 30 }}>
           Profile
         </Text>
-        <View style={globalStyles.table}>
-          <View style={globalStyles.rowTable}>
-            <Text style={globalStyles.entries}>Name</Text>
-            <Text style={globalStyles.entryText}>{user.name}</Text>
-          </View>
-          <View style={globalStyles.rowTable}>
-            <Text style={globalStyles.entries}>Mobile</Text>
-            <Text style={globalStyles.entryText}>{user.phone}</Text>
-          </View>
-          <View style={globalStyles.rowTable}>
-            <Text style={globalStyles.entries}>Address</Text>
-            <Text style={globalStyles.entryText}>{user.address}</Text>
-          </View>
-          <View style={globalStyles.rowTable}>
-            <Text style={globalStyles.entries}>Member Since</Text>
-            <Text style={globalStyles.entryText}>
-              {user.date !== "" ? convertDate(user.date) : ""}
+        {user.name === "" ? (
+          <React.Fragment>
+            <Image
+              source={require("../../assets/images/noprofolie.png")}
+              style={{ width: 345, height: 270, resizeMode: "contain" }}
+            />
+            <Text style={{ ...globalStyles.boldText, paddingHorizontal: 5 }}>
+              No profile available :(
             </Text>
-          </View>
-        </View>
-        <View style={globalStyles.buttonContainer}>
-          <AppButton title="Edit Profile" />
-        </View>
+            <Text
+              style={{
+                ...globalStyles.authLink,
+                paddingHorizontal: 30,
+                alignSelf: "center",
+                marginTop: 25,
+              }}
+            >
+              Have an account already then Login to see your profile
+            </Text>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <View style={globalStyles.table}>
+              <View style={globalStyles.rowTable}>
+                <Text style={globalStyles.entries}>Name</Text>
+                <Text style={globalStyles.entryText}>{user.name}</Text>
+              </View>
+              <View style={globalStyles.rowTable}>
+                <Text style={globalStyles.entries}>Mobile</Text>
+                <Text style={globalStyles.entryText}>{user.phone}</Text>
+              </View>
+              <View style={globalStyles.rowTable}>
+                <Text style={globalStyles.entries}>Address</Text>
+                <Text style={globalStyles.entryText}>{user.address}</Text>
+              </View>
+              <View style={globalStyles.rowTable}>
+                <Text style={globalStyles.entries}>Member Since</Text>
+                <Text style={globalStyles.entryText}>
+                  {user.date !== "" ? convertDate(user.date) : ""}
+                </Text>
+              </View>
+            </View>
+            <View style={globalStyles.buttonContainer}>
+              <AppButton title="Edit Profile" />
+            </View>
+          </React.Fragment>
+        )}
       </View>
       <FooterProfile navigation={navigation} />
     </React.Fragment>
